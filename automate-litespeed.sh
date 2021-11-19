@@ -11,7 +11,7 @@ server_access_log=$server_log/access.log
 server_error_log=$server_log/error.log
 mkdir -p $server_log
 chown www-data:www-data -R $server_log
-chmod 640 -R $vhost_log
+chmod 640 -R $server_log
 
 # default vhost log directory
 vhost_log=/var/log/lsws/vhosts/main
