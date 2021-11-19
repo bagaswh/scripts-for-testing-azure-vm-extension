@@ -1,6 +1,6 @@
 set -e
 
-apt install dialog apt-utils
+apt install dialog apt-utils -y
 
 # create swap
 if free | awk '/^Swap:/ {exit !$2}'; then

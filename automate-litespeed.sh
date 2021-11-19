@@ -1,10 +1,10 @@
 set -e
 
-wget https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/assets/litespeed-confs/httpd_config.conf -O httpd_config.conf
-wget https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/assets/litespeed-confs/vhconf.conf -O vhconf.conf
+wget -q https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/assets/litespeed-confs/httpd_config.conf -O httpd_config.conf
+wget -q https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/assets/litespeed-confs/vhconf.conf -O vhconf.conf
 
 wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo bash
-# apt install -y openlitespeed
+apt install -y openlitespeed
 
 # setup default vhost directory
 vhost_root=/var/www/lsws_vhosts/main
