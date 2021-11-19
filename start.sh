@@ -8,10 +8,16 @@ ls
 apt update
 apt install unzip curl -y
 
-wget -q https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/common.sh -O common.sh
-wget -q https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/automate-litespeed.sh -O automate-litespeed.sh
-wget -q https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/automate-nginx.sh -O automate-nginx.sh
-wget -q https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/automate-nodejs.sh -O automate-nodejs.sh
+if [ -z "$base_url" ]; then
+    base_url="https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master"
+fi
+
+export base_url=$base_url
+
+wget -q $base_url/common.sh -O common.sh
+wget -q $base_url/automate-litespeed.sh -O automate-litespeed.sh
+wget -q $base_url/automate-nginx.sh -O automate-nginx.sh
+wget -q $base_url/automate-nodejs.sh -O automate-nodejs.sh
 
 chmod +x ./*.sh
 
