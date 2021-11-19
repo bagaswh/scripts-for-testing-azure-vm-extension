@@ -9,14 +9,17 @@ chown azureuser:www-data $vhost_root
 server_log=/var/log/lsws
 server_access_log=$server_log/access.log
 server_error_log=$server_log/error.log
+mkdir -p $server_log
+chown www-data:www-data $vhost_log
+chmod 640 -R $vhost_log
 
 # default vhost log directory
-vhost_log=$vhost_root/log
-mkdir -p $vhost_log
-chown www-data:adm $vhost_log
-
+vhost_log=/var/log/lsws/vhosts/main
 vhost_access_log=$vhost_log/access.log
 vhost_error_log=$vhost_log/error.log
+mkdir -p $vhost_log
+chown www-data:www-data $vhost_log
+chmod 640 -R $vhost_log
 
 export HTTPD_CONFIG_PATH=assets/httpd_config.conf
 
@@ -26,17 +29,13 @@ export HTTPD_CONFIG_PATH=assets/httpd_config.conf
 # - enable server error and access log
 cat ./assets/httpd_config.conf >$HTTPD_CONFIG_PATH
 
-ls -l $HTTPD_CONFIG_PATH
+vhost_config_dir=/usr/local/lsws/conf/vhosts/main/
+export VHOST_CONFIG_PATH=$vhost_config_dir/vhconf.conf
 
-export VHOST_CONFIG_PATH=/usr/local/lsws/conf/vhosts/main/vhconf.conf
-mkdir -p /usr/local/lsws/conf/vhosts/main/
-chown lsadm:www-data /usr/local/lsws/conf/vhosts/main/
+mkdir -p $vhost_config_dir
+chown lsadm:www-data $vhost_config_dir
 touch $VHOST_CONFIG_PATH
-chmod 750 -R /usr/local/lsws/conf/vhosts/main/
-
-mkdir -p /var/log/lsws
-chown nobody:nogroup -R /var/log/lsws/
-chmod 640 -R /var/log/lsws
+chmod 750 -R $vhost_config_dir
 
 # apply config change
 service lsws restart
@@ -45,7 +44,9 @@ service lsws restart
 apt install --reinstall -y openlitespeed
 
 # vhost setup
-mkdir -p /var/log/lsws/vhosts/main/
-chown www-data:www-data -R /var/log/lsws/
-chmod 640 -R /var/log/lsws/vhosts/main/
+# do:
+# - always rewrite to https
+# - block sensitive files
 cat ./assets/httpd_config.conf >$VHOST_CONFIG_PATH
+
+service lsws restart
