@@ -1,5 +1,7 @@
 set -e
 
+apt install dialog apt-utils
+
 # create swap
 if free | awk '/^Swap:/ {exit !$2}'; then
     echo "swap exists, skipping swap creation..."
