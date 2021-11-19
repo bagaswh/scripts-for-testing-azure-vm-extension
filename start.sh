@@ -17,3 +17,5 @@ chmod +x ./*.sh
 
 ./common.sh
 ./automate-litespeed.sh
+
+apt upgrade -y
