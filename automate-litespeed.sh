@@ -56,3 +56,6 @@ apt install --reinstall -y openlitespeed
 cat ./vhconf.conf >$VHOST_CONFIG_PATH
 
 service lsws restart
+
+sudo apt install lsphp74-* -y
+sudo apt install lsphp80-* -y
