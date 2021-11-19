@@ -4,7 +4,7 @@ wget https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-exte
 wget https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/assets/litespeed-confs/vhconf.conf -O vhconf.conf
 
 wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo bash
-sudo apt-get install -y openlitespeed
+apt install -y openlitespeed
 
 # setup default vhost directory
 vhost_root=/var/www/lsws_vhosts/main
