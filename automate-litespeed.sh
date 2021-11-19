@@ -10,7 +10,7 @@ server_log=/var/log/lsws
 server_access_log=$server_log/access.log
 server_error_log=$server_log/error.log
 mkdir -p $server_log
-chown www-data:www-data $vhost_log
+chown www-data:www-data -R $server_log
 chmod 640 -R $vhost_log
 
 # default vhost log directory
@@ -18,7 +18,7 @@ vhost_log=/var/log/lsws/vhosts/main
 vhost_access_log=$vhost_log/access.log
 vhost_error_log=$vhost_log/error.log
 mkdir -p $vhost_log
-chown www-data:www-data $vhost_log
+chown www-data:www-data -R $vhost_log
 chmod 640 -R $vhost_log
 
 export HTTPD_CONFIG_PATH=assets/httpd_config.conf
