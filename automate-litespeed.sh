@@ -3,7 +3,7 @@ set -e
 # setup default vhost directory
 vhost_root=/var/www/lsws_vhosts/main
 sudo mkdir -p $vhost_root
-sudo chown wsl:www-data $vhost_root
+sudo chown azureuser:www-data $vhost_root
 
 # lsws log directory
 server_log=/var/log/lsws
@@ -20,25 +20,29 @@ vhost_error_log=$vhost_log/error.log
 
 export HTTPD_CONFIG_PATH=assets/httpd_config.conf
 
-sudo mkdir -p /var/log/lsws
-sudo chown nobody:nogroup -R /var/log/lsws/
-sudo chmod 740 -R /var/log/lsws
-
 # do:
 # - set user permission for LiteSpeed and ext apps
 # - enable ddos protection
 # - enable server error and access log
 cat ./assets/httpd_config.conf >$HTTPD_CONFIG_PATH
 
+ls -l $HTTPD_CONFIG_PATH
+
+export VHOST_CONFIG_PATH=/usr/local/lsws/conf/vhosts/main/vhconf.conf
+sudo mkdir -p /usr/local/lsws/conf/vhosts/main/
+sudo chown lsadm:www-data /usr/local/lsws/conf/vhosts/main/
+sudo touch $VHOST_CONFIG_PATH
+sudo chmod 750 -R /usr/local/lsws/conf/vhosts/main/
+
+sudo mkdir -p /var/log/lsws
+sudo chown nobody:nogroup -R /var/log/lsws/
+sudo chmod 740 -R /var/log/lsws
+
 # apply config change
 sudo service lsws restart
 
 # reinstall OLS to refresh file ownership
 sudo apt install --reinstall -y openlitespeed
-
-ls -l $HTTPD_CONFIG_PATH
-
-export VHOST_CONFIG_PATH=/usr/local/lsws/conf/vhosts/main/vhconf.conf
 
 # do:
 # - enable vhost error and access log
