@@ -1,6 +1,6 @@
 set -e
 
-wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo
+wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo bash
 sudo apt-get install openlitespeed -y
 
 # setup default vhost directory

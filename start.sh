@@ -9,7 +9,7 @@ apt update
 apt install unzip curl -y
 
 if [ -z "$scripts_url" ]; then
-    scripts_url=https://github.com/bagaswh/scripts-for-testing-azure-vm-extension/raw/master/zip/scripts8.zip
+    scripts_url=https://github.com/bagaswh/scripts-for-testing-azure-vm-extension/raw/master/zip/scripts9.zip
 fi
 
 rm scripts.zip || true
