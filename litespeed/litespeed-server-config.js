@@ -15,10 +15,10 @@ litespeed.conf.get("group").set("www-data");
 
 // ddos protection
 const perClientConnLimitConf = litespeed.conf.get("perClientConnLimit");
-perClientConnLimitConf.get("staticReqPerSec").set("40");
+perClientConnLimitConf.get("staticReqPerSec").set("250");
 perClientConnLimitConf.get("dynReqPerSec").set("2");
-perClientConnLimitConf.get("softLimit").set("15");
-perClientConnLimitConf.get("hardLimit").set("20");
+perClientConnLimitConf.get("softLimit").set("75");
+perClientConnLimitConf.get("hardLimit").set("100");
 perClientConnLimitConf.get("gracePeriod").set("15");
 perClientConnLimitConf.get("banPeriod").set("300");
 
