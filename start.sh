@@ -13,5 +13,7 @@ wget https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-exte
 wget https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/automate-nginx.sh -O automate-nginx.sh
 wget https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/automate-nodejs.sh -O automate-nodejs.sh
 
+chmod +x *.sh
+
 ./common.sh
 ./automate-litespeed.sh
