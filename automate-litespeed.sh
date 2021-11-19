@@ -1,7 +1,10 @@
 set -e
 
+wget https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/assets/litespeed-confs/httpd_config.conf -O httpd_config.conf
+wget https://raw.githubusercontent.com/bagaswh/scripts-for-testing-azure-vm-extension/master/assets/litespeed-confs/vhconf.conf -O vhconf.conf
+
 wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo bash
-sudo apt-get install openlitespeed -y
+sudo apt-get install -y openlitespeed
 
 # setup default vhost directory
 vhost_root=/var/www/lsws_vhosts/main
@@ -24,13 +27,13 @@ mkdir -p $vhost_log
 chown www-data:www-data -R $vhost_log
 chmod 640 -R $vhost_log
 
-export HTTPD_CONFIG_PATH=assets/httpd_config.conf
+export HTTPD_CONFIG_PATH=./httpd_config.conf
 
 # do:
 # - set user permission for LiteSpeed and ext apps
 # - enable ddos protection
 # - enable server error and access log
-cat ./assets/httpd_config.conf >$HTTPD_CONFIG_PATH
+cat ./httpd_config.conf >$HTTPD_CONFIG_PATH
 
 vhost_config_dir=/usr/local/lsws/conf/vhosts/main/
 export VHOST_CONFIG_PATH=$vhost_config_dir/vhconf.conf
@@ -50,6 +53,6 @@ apt install --reinstall -y openlitespeed
 # do:
 # - always rewrite to https
 # - block sensitive files
-cat ./assets/httpd_config.conf >$VHOST_CONFIG_PATH
+cat ./vhconf.conf >$VHOST_CONFIG_PATH
 
 service lsws restart
