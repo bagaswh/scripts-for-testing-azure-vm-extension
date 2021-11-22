@@ -60,3 +60,5 @@ service lsws stop
 
 # reinstall OLS to refresh file ownership
 apt-get -y install --reinstall openlitespeed
+
+sudo reboot
