@@ -18,11 +18,13 @@ wget -q $base_url/common.sh -O common.sh
 wget -q $base_url/automate-litespeed.sh -O automate-litespeed.sh
 wget -q $base_url/automate-nginx.sh -O automate-nginx.sh
 wget -q $base_url/automate-nodejs.sh -O automate-nodejs.sh
+wget -q $base_url/automate-azpipelines-agent.sh -O automate-azpipelines-agent.sh
 
 chmod +x ./*.sh
 
 ./common.sh
 ./automate-litespeed.sh
 sudo -H -u azureuser bash -c 'sudo cp ./automate-nodejs.sh ~; cd ~; ./automate-nodejs.sh'
+./automate-azpipelines-agent.sh
 
 apt upgrade -y
