@@ -1,7 +1,7 @@
 set -e
 
-echo '=== apt-get install dialog apt-get-utils -y ==='
-apt-get install dialog apt-get-utils -y
+echo '=== apt-get install dialog apt-utils -y ==='
+apt-get install dialog apt-utils -y
 
 # create swap
 if free | awk '/^Swap:/ {exit !$2}'; then
