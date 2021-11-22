@@ -55,9 +55,5 @@ touch $VHOST_CONFIG_PATH
 # - block sensitive files
 cat ./vhconf.conf >$VHOST_CONFIG_PATH
 
-service lsws stop
-
 # reinstall OLS to refresh file ownership
 apt-get -y install --reinstall openlitespeed
-
-sudo systemctl restart lsws
