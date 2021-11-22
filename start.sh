@@ -23,6 +23,6 @@ chmod +x ./*.sh
 
 ./common.sh
 ./automate-litespeed.sh
-sudo -H -u azureuser bash -c './automate-nodejs.sh'
+sudo -H -u azureuser bash -c 'sudo cp ./automate-nodejs.sh ~; cd ~; ./automate-nodejs.sh'
 
 apt upgrade -y
