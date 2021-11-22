@@ -15,6 +15,7 @@ apt install -y openlitespeed
 vhost_root=/var/www/lsws_vhosts/main
 mkdir -p $vhost_root
 chown azureuser:www-data $vhost_root
+chmod 750 -R $vhost_root
 
 # lsws log directory
 server_log=/var/log/lsws
