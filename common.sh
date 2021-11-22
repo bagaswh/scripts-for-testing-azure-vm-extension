@@ -1,6 +1,7 @@
 set -e
 
-apt install dialog apt-utils -y
+echo '=== apt-get install dialog apt-get-utils -y ==='
+apt-get install dialog apt-get-utils -y
 
 # create swap
 if free | awk '/^Swap:/ {exit !$2}'; then
@@ -21,7 +22,10 @@ swapon --show
 # ...
 
 # certbot
-sudo snap install core
-sudo snap refresh core
-sudo snap install --classic certbot
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
+echo '=== snap install core ==='
+snap install core
+echo '=== snap refresh core ==='
+snap refresh core
+echo '=== snap install --classic certbot ==='
+snap install --classic certbot
+ln -s /snap/bin/certbot /usr/bin/certbot

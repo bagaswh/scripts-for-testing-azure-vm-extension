@@ -1,18 +1,23 @@
 set -e
 
+echo "=== wget -q $base_url/assets/litespeed-confs/httpd_config.conf -O httpd_config.conf ==="
 wget -q $base_url/assets/litespeed-confs/httpd_config.conf -O httpd_config.conf
-echo 'downloade httpd_config.conf'
 cat httpd_config.conf
 
+echo "=== wget -q $base_url/assets/litespeed-confs/vhconf.conf -O vhconf.conf ==="
 wget -q $base_url/assets/litespeed-confs/vhconf.conf -O vhconf.conf
 echo 'downloaded vhconf.conf'
 cat vhconf.conf
 
-wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo bash
-apt install -y openlitespeed
+echo "=== wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | bash ==="
+wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | bash
+echo "=== apt-get install -y openlitespeed ==="
+apt-get install -y openlitespeed
 
-sudo apt install lsphp74-* -y
-sudo apt install lsphp80-* -y
+echo "=== apt-get install lsphp74-* -y ==="
+apt-get install lsphp74-* -y
+echo "=== apt-get install lsphp80-* -y ==="
+apt-get install lsphp80-* -y
 
 # setup default vhost directory
 vhost_dir=/var/www/lsws_vhosts
@@ -56,10 +61,14 @@ touch $VHOST_CONFIG_PATH
 # - block sensitive files
 cat ./vhconf.conf >$VHOST_CONFIG_PATH
 
+echo "=== service lsws stop ==="
 service lsws stop
 
 # reinstall OLS to refresh file ownership
-apt-get -y install --reinstall openlitespeed
+echo "=== apt-get-get -y install --reinstall openlitespeed ==="
+apt-get-get -y install --reinstall openlitespeed
 
+echo "=== service lsws stop ==="
 service lsws stop
+echo "=== service lsws start ==="
 service lsws start
