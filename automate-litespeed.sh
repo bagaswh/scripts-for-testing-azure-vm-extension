@@ -15,24 +15,23 @@ sudo apt install lsphp74-* -y
 sudo apt install lsphp80-* -y
 
 # setup default vhost directory
-vhost_dir=/var/www/lsws_vhosts
-vhost_root=$vhost_dir/main
+vhost_root=/var/www/lsws_vhosts/main
 mkdir -p $vhost_root
-chown azureuser:www-data -R $vhost_dir
-chmod 750 -R $vhost_dir
+chown azureuser:www-data -R $vhost_root
+chmod 750 -R $vhost_root
 
 # lsws log directory
-server_log=/var/log/lsws
-mkdir -p $server_log
-chown www-data:www-data -R $server_log
-chmod 640 -R $server_log
+# server_log=/var/log/lsws
+# mkdir -p $server_log
+# chown www-data:www-data -R $server_log
+# chmod 640 -R $server_log
 
 # default vhost log directory
-vhosts_log_dir=/var/log/lsws/vhosts
-vhost_log=$vhosts_log_dir/main
-mkdir -p $vhost_log
-chown www-data:www-data -R $vhosts_log_dir
-chmod 640 -R $vhosts_log_dir
+# vhosts_log_dir=/var/log/lsws/vhosts
+# vhost_log=$vhosts_log_dir/main
+# mkdir -p $vhost_log
+# chown www-data:www-data -R $vhosts_log_dir
+# chmod 640 -R $vhosts_log_dir
 
 export HTTPD_CONFIG_PATH=/usr/local/lsws/conf/httpd_config.conf
 
