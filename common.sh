@@ -22,8 +22,6 @@ swapon --show
 # ...
 
 # certbot
-echo '=== apt-get install snapd ==='
-apt-get install snapd
 echo '=== snap install core ==='
 snap install core
 echo '=== snap refresh core ==='
