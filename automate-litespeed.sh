@@ -76,3 +76,6 @@ cp index.html $vhost_root/html
 chown azureuser:www-data -R $vhost_root/html
 find $vhost_root -type f -exec chmod 664 {} \; 
 find $vhost_root -type d -exec chmod 775 {} \;
+
+echo "=== service lsws restart ==="
+service lsws restart
