@@ -70,5 +70,8 @@ apt-get -y install --reinstall openlitespeed
 
 echo "=== service lsws stop ==="
 service lsws stop
+
+sudo rm -rf /tmp/lshttpd
+
 echo "=== service lsws start ==="
 service lsws start
