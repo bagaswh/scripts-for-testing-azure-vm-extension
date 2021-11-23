@@ -38,7 +38,12 @@ chmod +x ./*.sh
 
 ./common.sh
 ./automate-litespeed.sh
-sudo -H -u azureuser bash -c 'cp ./automate-nodejs.sh ~; cd ~; ./automate-nodejs.sh'
+
+cp ./automate-nodejs.sh /home/azureuser;
+chown azureuser:azureuser /home/azureuser/automate-nodejs.sh
+chmod u+x /home/azureuser/automate-nodejs.sh
+sudo -H -u azureuser bash -c 'cd ~; ./automate-nodejs.sh'
+
 ./automate-azpipelines-agent.sh
 
 apt-get upgrade -y
