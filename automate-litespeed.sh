@@ -28,7 +28,7 @@ chmod 750 -R $vhost_dir
 server_log=/var/log/lsws
 mkdir -p $server_log
 chown www-data:www-data -R $server_log
-chmod 640 -R $server_log
+chmod 750 -R $server_log
 
 export HTTPD_CONFIG_PATH=/usr/local/lsws/conf/httpd_config.conf
 
@@ -54,15 +54,11 @@ cat ./vhconf.conf >$VHOST_CONFIG_PATH
 
 echo "=== service lsws stop ==="
 service lsws stop
+sudo rm -rf /tmp/lshttpd
 
 # reinstall OLS to refresh file ownership
 echo "=== apt-get -y install --reinstall openlitespeed ==="
 apt-get -y install --reinstall openlitespeed
-
-echo "=== service lsws stop ==="
-service lsws stop
-
-sudo rm -rf /tmp/lshttpd
 
 echo "=== service lsws start ==="
 service lsws start
