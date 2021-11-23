@@ -70,7 +70,9 @@ echo "=== service lsws start ==="
 service lsws start
 
 mkdir $vhost_root/html
-cp assets/litespeed-confs/index.html $vhost_root/html
+echo "=== wget -q $base_url/assets/litespeed-confs/index.html -O index.html ==="
+wget -q $base_url/assets/litespeed-confs/index.html -O index.html
+cp index.html $vhost_root/html
 chown azureuser:www-data -R $vhost_root/html
 find $vhost_root -type f -exec chmod 664 {} \; 
 find $vhost_root -type d -exec chmod 775 {} \;
