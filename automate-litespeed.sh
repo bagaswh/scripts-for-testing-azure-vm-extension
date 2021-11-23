@@ -32,13 +32,6 @@ mkdir -p $server_log
 chown www-data:www-data -R $server_log
 chmod 640 -R $server_log
 
-# default vhost log directory
-vhosts_log_dir=/var/log/lsws/vhosts
-vhost_log=$vhosts_log_dir/main
-mkdir -p $vhost_log
-chown www-data:www-data -R $vhosts_log_dir
-chmod 640 -R $vhosts_log_dir
-
 export HTTPD_CONFIG_PATH=/usr/local/lsws/conf/httpd_config.conf
 
 # do:
@@ -75,3 +68,9 @@ sudo rm -rf /tmp/lshttpd
 
 echo "=== service lsws start ==="
 service lsws start
+
+mkdir $vhost_root/html
+cp assets/litespeed-confs/index.html $vhost_root/html
+chown azureuser:www-data -R $vhost_root/html
+find $vhost_root -type f -exec chmod 664 {} \; 
+find $vhost_root -type d -exec chmod 775 {} \;
