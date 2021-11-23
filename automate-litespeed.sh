@@ -14,10 +14,8 @@ wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | bash
 echo "=== apt-get install -y openlitespeed ==="
 apt-get install -y openlitespeed
 
-echo "=== apt-get install lsphp74-* -y ==="
-apt-get install lsphp74-* -y
-echo "=== apt-get install lsphp80-* -y ==="
-apt-get install lsphp80-* -y
+echo "=== apt-get install lsphp74-* lsphp80-* -y ==="
+apt-get install lsphp74-* lsphp80-* -y
 
 # setup default vhost directory
 vhost_dir=/var/www/lsws_vhosts
@@ -72,7 +70,10 @@ service lsws start
 mkdir $vhost_root/html
 echo "=== wget -q $base_url/assets/litespeed-confs/index.html -O index.html ==="
 wget -q $base_url/assets/litespeed-confs/index.html -O index.html
+echo "=== wget -q $base_url/assets/litespeed-confs/phpinfo.phpinfo -O phpinfo.php ==="
+wget -q $base_url/assets/litespeed-confs/phpinfo.php -O phpinfo.php
 cp index.html $vhost_root/html
+cp phpinfo.php $vhost_root/html
 chown azureuser:www-data -R $vhost_root/html
 find $vhost_root -type f -exec chmod 664 {} \; 
 find $vhost_root -type d -exec chmod 775 {} \;
