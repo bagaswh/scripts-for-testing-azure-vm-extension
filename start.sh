@@ -12,6 +12,8 @@ ls
 
 echo '=== apt-get update ==='
 apt-get update
+echo '=== apt-get update ==='
+apt-get upgrade -y
 
 echo '=== apt-get install zip unzip curl wget -y ==='
 apt-get install zip unzip curl wget -y
@@ -45,5 +47,3 @@ chmod u+x /home/azureuser/automate-nodejs.sh
 sudo -H -u azureuser bash -c 'cd ~; ./automate-nodejs.sh'
 
 ./automate-azpipelines-agent.sh
-
-apt-get upgrade -y
