@@ -12,7 +12,7 @@ ls
 
 echo '=== apt-get update ==='
 apt-get update
-echo '=== apt-get update ==='
+echo '=== apt-get upgrade ==='
 apt-get upgrade -y
 
 echo '=== apt-get install zip unzip curl wget -y ==='
