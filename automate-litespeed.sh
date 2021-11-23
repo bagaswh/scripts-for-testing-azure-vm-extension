@@ -65,8 +65,8 @@ echo "=== service lsws stop ==="
 service lsws stop
 
 # reinstall OLS to refresh file ownership
-echo "=== apt-get-get -y install --reinstall openlitespeed ==="
-apt-get-get -y install --reinstall openlitespeed
+echo "=== apt-get -y install --reinstall openlitespeed ==="
+apt-get -y install --reinstall openlitespeed
 
 echo "=== service lsws stop ==="
 service lsws stop
