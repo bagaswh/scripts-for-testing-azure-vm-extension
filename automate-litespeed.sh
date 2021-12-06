@@ -66,18 +66,14 @@ apt-get -y install --reinstall openlitespeed
 echo "=== service lsws start ==="
 service lsws start
 
-# for vhost root
-mkdir -p $vhost_dir/html
-
-mkdir $vhost_root/html
-chown azureuser:webuser -R $vhost_root/html
-
 echo "=== wget -q $base_url/assets/litespeed-confs/index.html -O index.html ==="
 wget -q $base_url/assets/litespeed-confs/index.html -O index.html
-cp index.html $vhost_dir/html
-chown azureuser:webuser -R $vhost_dir/html
-find $vhost_dir -type f -exec chmod 640 {} \;
-find $vhost_dir -type d -exec chmod 770 {} \;
+
+mkdir $vhost_root/html
+cp index.html $vhost_root/html
+chown azureuser:webuser -R $vhost_root/html
+find $vhost_root -type f -exec chmod 640 {} \;
+find $vhost_root -type d -exec chmod 770 {} \;
 
 echo "=== service lsws restart ==="
 service lsws restart
