@@ -17,24 +17,27 @@ apt-get install -y openlitespeed
 echo "=== apt-get install lsphp74-* lsphp80-* -y ==="
 apt-get install lsphp74-* lsphp80-* -y
 
+# web user
+useradd -r -s /sbin/nologin webuser
+usermod -a -G webuser www-data
+
 # setup default vhost directory
 vhost_dir=/var/www/lsws_vhosts
 vhost_root=$vhost_dir/main
 mkdir -p $vhost_root
-chown azureuser:www-data -R $vhost_dir
+chown azureuser:webuser -R $vhost_dir
 chmod 750 -R $vhost_dir
 
 # lsws log directory
 server_log=/var/log/lsws
 mkdir -p $server_log
-chown www-data:www-data -R $server_log
-chmod 750 -R $server_log
+chown www-data:adm -R $server_log
+chmod 740 -R $server_log
 
 export HTTPD_CONFIG_PATH=/usr/local/lsws/conf/httpd_config.conf
 
 # do:
 # - set user permission for LiteSpeed and ext apps
-# - enable ddos protection
 # - enable server error and access log
 cat ./httpd_config.conf >$HTTPD_CONFIG_PATH
 
@@ -67,9 +70,9 @@ mkdir $vhost_root/html
 echo "=== wget -q $base_url/assets/litespeed-confs/index.html -O index.html ==="
 wget -q $base_url/assets/litespeed-confs/index.html -O index.html
 cp index.html $vhost_root/html
-chown azureuser:www-data -R $vhost_root/html
-find $vhost_root -type f -exec chmod 664 {} \;
-find $vhost_root -type d -exec chmod 775 {} \;
+chown azureuser:php-user -R $vhost_root/html
+find $vhost_root -type f -exec chmod 660 {} \;
+find $vhost_root -type d -exec chmod 770 {} \;
 
 echo "=== service lsws restart ==="
 service lsws restart
